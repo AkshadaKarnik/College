@@ -1,0 +1,21 @@
+<div class="jumbotron">
+  <h1 class="display-4">
+    <%= @college.name %>
+  </h1>
+  <p class="lead">
+    <%= @college.email %> |
+    <%= @college.address %> |
+    <%= @college.contact %>
+  </p>
+</div>
+
+
+ <%= render @college %>
+
+<div>      
+  <%= link_to "Edit this college", edit_college_path(@college), class:"btn btn-secondary" %> 
+  <%= link_to "Back to colleges", colleges_path , class:"btn btn-dark" %>
+  <br/><br/>
+  <%= button_to "Destroy this college", @college, method: :delete, class:"btn btn-danger" %>
+</div>
+
