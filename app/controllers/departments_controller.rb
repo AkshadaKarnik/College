@@ -1,80 +1,48 @@
-class DepartmentsController < ApplicationController
-
-	before_action :set_department, only: %i[ show edit update destroy ]
-
-	# GET /departments or /departments.json
-	#before_action :authenticate_user!
-	def index	#collection
+class DepartmentsController < ApplicationController 
+	def index
 		@departments = Department.all
 	end
 
-	# GET /departments/1 or /departments/1.json
-	#before_action :authenticate_user!
-	def show #member(if showing particular record using id) OR #collection(if showing the whole list of records)
+	def show
 		@department = Department.find(params[:id])
 	end
 
-	# GET /departments/new
-	#before_action :authenticate_user!
-	def new	#member
+	def new
 		@department = Department.new
 	end
 
-	# GET /departments/1/edit
-	#before_action :authenticate_user!
-	def edit #member
+	def create
+		@department = Department.new(dept_params)
 
+		if @department.save
+			redirect_to @department
+		else
+			render :new, status: :unprocessable_entity
+		end
 	end
 
-	# POST /departments or /departments.json
-	#before_action :authenticate_user!
-  def create
-    @department = Department.new(department_params)
+	def edit
+		@department = Department.find(params[:id])
+	end
 
-    respond_to do |format|
-      if @department.save
-        format.html { redirect_to department_url(@department), notice: "Department has been created successfully :)" }
-        format.json { render :show, status: :created, location: @department }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @department.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+	def update
+		@department = Department.find(params[:id])
 
-  # PATCH/PUT /departments/1 or /departments/1.json
-  #before_action :authenticate_user!
-  def update
-    respond_to do |format|
-      if @department.update(department_params)
-        format.html { redirect_to department_url(@department), notice: "Department has been successfully updated." }
-        format.json { render :show, status: :ok, location: @department }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @department.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+		if @department.update(dept_params)
+			redirect_to @department
+		else
+			render :edit, status: :unprocessable_entity
+		end
+	end
 
-  # DELETE /departments/1 or /departments/1.json
-  #before_action :authenticate_user!
-  def destroy
-    @department.destroy
-
-    respond_to do |format|
-      format.html { redirect_to departments_url, notice: "Department has been successfully destroyed :(" }
-      format.json { head :no_content }
-    end
-  end
+	def destroy
+		@department = Department.find(params[:id])
+		@department.destroy
+		redirect_to root_path, status: :see_other
+	end
 
 	private
-	# Use callbacks to share common setup or constraints between actions.
-	def set_department
-	  @department = Department.find(params[:id])
-	end
-
-	# Only allow a list of trusted parameters through.
-	def department_params
-	  params.require(:department).permit(:name, :course)
+	def dept_params
+		params.require(:department).permit(:college_id, :name, :course, :status)
 	end
 end

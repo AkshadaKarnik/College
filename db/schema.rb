@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_30_124914) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_134836) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,28 +32,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_124914) do
     t.index ["college_id"], name: "index_departments_on_college_id"
   end
 
-  create_table "students", force: :cascade do |t|
-    t.bigint "college_id", null: false
-    t.bigint "department_id", null: false
+  create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "enroll_no"
-    t.date "clg_start_date"
-    t.date "clg_end_date"
-    t.string "gender"
-    t.integer "age"
-    t.string "contact"
-    t.string "email"
-    t.string "password"
-    t.string "permanent_address"
-    t.string "current_address"
-    t.string "aadhar_no"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["college_id"], name: "index_students_on_college_id"
-    t.index ["department_id"], name: "index_students_on_department_id"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
   add_foreign_key "departments", "colleges"
-  add_foreign_key "students", "colleges"
-  add_foreign_key "students", "departments"
 end
