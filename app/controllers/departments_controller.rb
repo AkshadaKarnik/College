@@ -13,12 +13,12 @@ class DepartmentsController < ApplicationController
 
 	def create
 		@department = Department.new(dept_params)
-
-		if @department.save
-			redirect_to @department
-		else
-			render :new, status: :unprocessable_entity
-		end
+    
+    if @department.save
+      redirect_to @department
+    else
+      render :new, status: :unprocessable_entity
+    end
 	end
 
 	def edit

@@ -1,0 +1,25 @@
+<%= form_with model: @department do |form| %>
+  <% if @department.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@department.errors.count, "error") %> prohibited this department from being saved:</h2>
+
+      <ul>
+        <% @department.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.text_field :college_id, class:"form-control", placeholder:"College Id(to which dept belongs)"  %>
+  </div>
+  <div class="form-group">
+    <%= form.text_field :name, class:"form-control", placeholder:"Department Name"  %>
+  </div>
+  <div class="form-group">
+    <%= form.text_field :course, class:"form-control", placeholder:"Department Course" %>
+  </div>
+  <div class="form-group">
+    <%= form.submit :Submit, class:'btn btn-success' %>
+  </div>
+<% end %>
