@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   # get 'sign_in', to: 'devise/sessions#new'
   #end
   #devise_for :users, skip: :all
-  get 'homes/about'
-  root 'homes#index'
+  root 'users#index'
+  get '/stud_profile', to: 'users#index_stud'
+  #get '/stud_show', to: 'users#show_stud'
+  #get '/stud_edit', to: 'users#edit_stud'
+  resources :users
   resources :colleges
   resources :departments
 end

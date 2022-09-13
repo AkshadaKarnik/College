@@ -11,7 +11,7 @@
     </div>
   <% end %>
   <div class="form-group">
-    <%= form.text_field :college_id, class:"form-control", placeholder:"College Id(to which dept belongs)"  %>
+    <%= form.collection_select :college_id, College.order(:name), :id, :name%>
   </div>
   <div class="form-group">
     <%= form.text_field :name, class:"form-control", placeholder:"Department Name"  %>

@@ -1,0 +1,21 @@
+<% if current_user.role == 'admin' %>
+  <h1>User List :)</h1>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |usr| %>
+      <tr>
+        <td><%= usr.name %></td>
+        <td><%= usr.email %></td>
+        <td><%= usr.role %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
