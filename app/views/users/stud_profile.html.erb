@@ -1,19 +1,24 @@
-<h1>Student Profile</h1>
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Email</th>
-      <th scope="col">Role</th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @current_stud.email %></td>
-      <td><%= @current_stud.role %></td>
-      <td><%= link_to 'show', show_stud_path, class:"btn btn-secondary" %></td>
-      <td><%= link_to 'edit', edit_stud_path, class:"btn btn-secondary" %></td>
-      <td><%= link_to 'update', update_stud_path, class:"btn btn-secondary" %></td>
-    </tr>
-  </tbody>
-</table>
+<% if current_user.role == 'student' %>
+  <h1>Student Profile</h1>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+        <th scope="col">Your Role</th>
+        <th colspan="3">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @current_stud.name %></td>
+        <td><%= @current_stud.age %></td>
+        <td><%= @current_stud.email %></td>
+        <td><%= @current_stud.role %></td>
+        <td><%= link_to 'show', show_stud_path, class:"btn btn-secondary" %></td>
+        <td><%= link_to 'edit', edit_stud_path(@student), class:"btn btn-secondary" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

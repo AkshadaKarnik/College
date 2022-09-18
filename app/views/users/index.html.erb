@@ -4,14 +4,16 @@
     <thead class="thead-light">
       <tr>
         <th scope="col">Name</th>
+        <th scope="col">Age</th>
         <th scope="col">Email</th>
-        <th scope="col">Role</th>
+        <th scope="col">User Role</th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |usr| %>
       <tr>
         <td><%= usr.name %></td>
+        <td><%= usr.age %></td>
         <td><%= usr.email %></td>
         <td><%= usr.role %></td>
       </tr>

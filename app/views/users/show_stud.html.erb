@@ -1,9 +1,12 @@
 <div class="jumbotron">
   <h1 class="display-4">
-    <h2> Hello role <%= @student.role %> </h2>
+    <h2> Hello <%= @student.name %>!!</h2>
   </h1>
   <p class="lead">
-    <%= @student.email %>
+    Your age: <%= @student.age %> <br>
+    Your email: <%= @student.email %> <br>
+    Your college: <%= @student.college_id %> <br>
+    Your department: <%= @student.department_id %> <br>
   </p>
 </div>
 <%= link_to 'edit', edit_stud_path(@student), class:"btn btn-secondary" %>

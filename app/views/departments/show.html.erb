@@ -3,7 +3,8 @@
     <%= @department.name %>
   </h1>
   <p class="lead">
-    <%= @department.course %>
+    associated college name: <%= @department.college_id %> <br>
+     course: <%= @department.course %>
   </p>
 </div>
 <%= link_to 'edit', edit_department_path(@department), class:"btn btn-secondary" %>

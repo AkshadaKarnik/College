@@ -15,13 +15,7 @@
             <%= link_to 'Colleges', colleges_path, class: "nav-link"%>
           </li>
           <li class="nav-item">
-            <%= link_to 'Add College', new_college_path, class: "nav-link"%>
-          </li>
-          <li class="nav-item">
             <%= link_to 'Departments', departments_path, class: "nav-link"%>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Add Department', new_department_path, class: "nav-link"%>
           </li>
         <% else %>
         <li class="nav-item">
@@ -39,7 +33,7 @@
       <li class="nav-item">
             <%= link_to 'SignOut', destroy_user_session_path, data: {
                         turbo_method: :delete,
-                        turbo_confirm: "Are you sure?", class: "nav-link"
+                        turbo_confirm: "Are you sure?", class: "nav-link", id:"signOut"
                       } %>           
       </li>
     </ul>
