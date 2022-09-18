@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+# Department API
 class Api::V1::DepartmentsController < Api::V1::ApiController 
 	before_action :my_dept, only: [:show, :edit, :update, :destroy]
 	skip_before_action :authenticate_user!, only: [:index, :show, :new, :create, :edit, :update, :destroy]

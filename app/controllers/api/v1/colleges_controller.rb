@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+# College API
 class Api::V1::CollegesController < Api::V1::ApiController
-  before_action :my_college, only: [:show, :edit, :update, :destroy]  
+  before_action :my_college, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:create, :update]
 
-  def index #Upto this only router has mapped the route to this index action of this CollegesController
-    @colleges = College.all #Now, this index action uses the College model to fetch all colleges from the database n assigns                           #this to the @colleges instance variable.
+  def index # Upto this only router has mapped the route to this index action of this CollegesController
+    @colleges = College.all # Now, this index action uses the College model to fetch all colleges from the database n assigns this to the @colleges instance variable.
     render json: @colleges 
   end
 
-#Read
+# Read
   def show
     render json: @college
   end
@@ -18,7 +20,7 @@ class Api::V1::CollegesController < Api::V1::ApiController
     render json: @college
   end
 
-#Create
+# Create
   def create
     @college = College.new(college_params)
 
@@ -27,11 +29,11 @@ class Api::V1::CollegesController < Api::V1::ApiController
       render json: @college
     else
       render :new, status: :unprocessable_entity
-      render error: { error: 'Unable to create college'}, status: 400
+      render error: {error: 'Unable to create college'}, status: 400
     end
   end
 
-#Update
+# Update
   def edit
     render json: @college
   end
@@ -40,21 +42,21 @@ class Api::V1::CollegesController < Api::V1::ApiController
     if @college
       @college.update(college_params)
       redirect_to @college
-      render json: { message: 'college succefully updated'}, status: 200
+      render json: {message: 'college succefully updated'}, status: 200
     else
       render :edit, status: :unprocessable_entity
-      render error: { error: 'Unable to update college'}, status: 400
+      render error: {error: 'Unable to update college'}, status: 400
     end
   end
 
-#Delete
+# Delete
   def destroy
     @college.destroy
     redirect_to root_path, status: :see_other
     render json: @college
   end
 
-#Param hash
+# Param hash
   private
   def college_params
     params.require(:college).permit(:name, :email, :address, :contact)#, :status)
