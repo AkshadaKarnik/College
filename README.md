@@ -1,4 +1,4 @@
-# README
+# README FOR COLLEGE MANAGEMENT SYSTEM APP IN RAILS
 
 ##### Prerequisites
 
@@ -16,7 +16,7 @@ The main gems used must be in your Gemfile, these are:
 
 ##### 1. Check out the repository
 
-git clone 
+git clone https://github.com/AkshadaKarnik/College/tree/task_19_09
 
 ##### 2. Create database.yml file
 
