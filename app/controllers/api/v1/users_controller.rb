@@ -2,7 +2,7 @@
 # User API
 class Api::V1::UsersController < Api::V1::ApiController
   skip_before_action :authenticate_request, only: [:create]
-  before_action :set_user, only: [:show, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy]
 
   def index
     @users = User.all 
@@ -33,8 +33,9 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   private
+
   def user_params
-    params.permit(:email, :password)
+    params.permit(:name, :age, :email, :password, :role)
   end
 
   def set_user

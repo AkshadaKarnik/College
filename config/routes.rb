@@ -7,13 +7,11 @@ Rails.application.routes.draw do
   get '/show_stud', to: 'users#show_stud'
   get '/edit_stud', to: 'users#edit_stud'
   put '/update_stud', to: 'users#update_stud'
-  resources :users
-  resources :colleges
-  resources :departments
+  resources :users, :colleges, :departments
 
   namespace :api do
     namespace :v1 do
-      resources :users #, only: [:create]
+      resources :users, :colleges, :departments
       post '/auth/login', to: 'authentication#login'
     end
   end

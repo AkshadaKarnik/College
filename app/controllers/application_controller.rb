@@ -2,9 +2,8 @@
 # An Application Controller
 # If doing API hitting operations, let it be commented
 class ApplicationController < ActionController::Base
-=begin
   before_action :authenticate_user!
-
+=begin
   protect_from_forgery with: :exception
     before_action :configure_permitted_parameters, if: :devise_controller?
     protected

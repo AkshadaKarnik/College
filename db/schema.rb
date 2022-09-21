@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_18_051338) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_21_083138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,12 +24,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_18_051338) do
   end
 
   create_table "departments", force: :cascade do |t|
-    t.bigint "college_id", null: false
     t.string "name"
     t.string "course"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["college_id"], name: "index_departments_on_college_id"
+    t.integer "college_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,8 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_18_051338) do
     t.integer "age"
     t.bigint "department_id"
     t.string "password_digest"
-    t.bigint "college_id"
-    t.index ["college_id"], name: "index_users_on_college_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -61,7 +58,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_18_051338) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "departments", "colleges"
-  add_foreign_key "users", "colleges"
   add_foreign_key "users", "departments"
 end

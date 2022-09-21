@@ -4,6 +4,7 @@ class Api::V1::AuthenticationController < Api::V1::ApiController
   skip_before_action :authenticate_request
 
   def login
+    # byebug
     @user = User.find_by_email(params[:email])
 		if @user&.authenticate(params[:password])
 			token = jwt_encode(user_id: @user.id)
