@@ -5,8 +5,8 @@ class User < ApplicationRecord
 
   enum role: {student: 0, admin: 1}
 
-  has_one :college, :through => :department
   belongs_to :department, optional: true
+  has_one :college, through: :department
 
   # belongs_to :college, optional: true
   # belongs_to :department, optional: true

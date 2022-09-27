@@ -3,7 +3,7 @@ class College < ApplicationRecord
   # has_secure_password
 
   has_many :departments, dependent: :destroy
-  
+  has_many :users, through: :departments
   # has_many :departments, dependent: :destroy
   # has_many :users, dependent: :destroy 
   

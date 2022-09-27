@@ -25,6 +25,9 @@ gem 'jwt'
 # Using the bcrypt
 gem 'bcrypt'
 
+# serializer gem
+gem 'active_model_serializers'
+
 # devise gem
 gem 'devise'
 

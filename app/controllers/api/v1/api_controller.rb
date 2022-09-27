@@ -8,9 +8,14 @@ class Api::V1::ApiController < ActionController::API
   private
 
   def authenticate_request
-    header = request.headers['Authorization']
-    header = header.split(' ').last if header
-    decoded = jwt_decode(header)
-    @current_user = User.find(decoded[:user_id])
+    begin
+      header = request.headers['Authorization']
+      header = header.split(' ').last if header
+      #byebug
+      decoded = jwt_decode(header)
+      @current_user = User.find(decoded[:user_id])      
+    rescue StandardError => e
+      puts "#{e}"
+    end
   end
 end

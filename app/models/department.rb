@@ -3,7 +3,7 @@ class Department < ApplicationRecord
 	# require 'securerandom'
 	# has_secure_password
 	
-	belongs_to :college, optional: true
+	belongs_to :college#, optional: true
 	has_many :users, dependent: :destroy
 
 	# belongs_to :college

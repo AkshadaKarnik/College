@@ -13,7 +13,11 @@ module JsonWebToken
 
 	def jwt_decode(token)
 	 # byebug
-		decoded = JWT.decode(token, SECRET_KEY)[0]
-		HashWithIndifferentAccess.new decoded
+		begin
+			decoded = JWT.decode(token, SECRET_KEY)[0]
+			HashWithIndifferentAccess.new decoded			
+		rescue StandardError => e
+			puts "Something went wrong! =====#{e}======"
+		end
 	end
 end
